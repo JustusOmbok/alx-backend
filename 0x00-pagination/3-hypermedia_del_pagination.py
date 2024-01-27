@@ -49,17 +49,19 @@ class Server:
         Returns:
             Dict: Hypermedia pagination information.
         """
-        assert index is None or 0 <= index < len(self.__indexed_dataset), "Int."
+        assert (
+                index is None or 0 <= index < len(self.__indexed_dataset)
+                ), "Index out of range."
 
         data = []
         next_index = None
 
         if index is not None:
-            data = [
-                self.__indexed_dataset[i] 
-                for i in range(index, index + page_size) 
-                if i in self.__indexed_dataset
-            ]
+            data = (
+                    [self.__indexed_dataset[i]
+                        for i in range(index, index + page_size)
+                        if i in self.__indexed_dataset]
+                    )
             next_index = index + page_size
 
         return {
