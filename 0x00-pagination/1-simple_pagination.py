@@ -25,7 +25,7 @@ def index_range(page: int, page_size: int) -> tuple:
     start_index = (page - 1) * page_size
     end_index = page * page_size
 
-    return start_index, end_index
+    return start_index, end_index - 1  # Adjust end index to be inclusive
 
 
 class Server:
@@ -58,8 +58,8 @@ class Server:
         Returns:
             List[List]: Page of the dataset.
         """
-        assert isinstance(page, int) and isinstance(page_size, int),
-        assert page > 0 and page_size > 0,
+        assert isinstance(page, int) and isinstance(page_size, int), "Page"
+        assert page > 0 and page_size > 0, "Page."
 
         start_index, end_index = index_range(page, page_size)
         dataset = self.dataset()
