@@ -4,6 +4,7 @@
 
 from base_caching import BaseCaching
 
+
 class LFUCache(BaseCaching):
     """ LFUCache class inherits from BaseCaching
     """
@@ -21,18 +22,24 @@ class LFUCache(BaseCaching):
             if len(self.cache_data) >= self.MAX_ITEMS:
                 # Discard the least frequency used item (LFU algorithm)
                 min_freq = min(self.frequency.values())
-                least_frequent_keys = [k for k, v in self.frequency.items() if v == min_freq]
+                least_frequent_keys = [
+                    k for k, v in self.frequency.items() if v == min_freq
+                    ]
 
                 if len(least_frequent_keys) > 1:
-                    # Use LRU algorithm to discard the least recently used among the least frequent
-                    lru_key = min(least_frequent_keys, key=lambda k: self.cache_data[k]['access_count'])
+                    # Use LRU algorithm to discard the least recently used
+                    # among the least frequent
+                    lru_key = (
+                        min(least_frequent_keys,
+                            key=lambda k: self.cache_data[k]['access_count'])
+                            )
                 else:
                     lru_key = least_frequent_keys[0]
 
                 del self.cache_data[lru_key]
                 del self.frequency[lru_key]
                 print("DISCARD:", lru_key)
-                
+
             self.cache_data[key] = {'item': item, 'access_count': 0}
             self.frequency[key] = 0
 
