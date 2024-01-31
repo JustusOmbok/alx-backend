@@ -31,7 +31,7 @@ class LRUCache(BaseCaching):
         """ Get an item by key
         """
         if key is not None and key in self.cache_data:
-            # Move the accessed key to the end of the order to mark it as most recently used
+            # Move the accessed key to the end of list
             self.order.remove(key)
             self.order.append(key)
             return self.cache_data[key]
