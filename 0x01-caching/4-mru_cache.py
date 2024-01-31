@@ -31,7 +31,7 @@ class MRUCache(BaseCaching):
         """ Get an item by key
         """
         if key is not None and key in self.cache_data:
-            # Move the accessed key to the front of the order 
+            # Move the accessed key to the front of the order
             # to mark it as most recently used
             self.order.remove(key)
             self.order.insert(0, key)
