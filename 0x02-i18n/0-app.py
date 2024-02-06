@@ -10,7 +10,7 @@ app.url_map.strict_slashes = False
 @app.route('/')
 def index():
     """Define index function."""
-    return render_template('0-index.html', title='Welcome to Holberton')
+    return render_template('0-index.html')
 
 
 if __name__ == '__main__':
