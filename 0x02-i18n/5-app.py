@@ -15,6 +15,7 @@ class Config:
 
 # Instantiate the Flask app
 app = Flask(__name__)
+app.config.from_object('config')
 app.url_map.strict_slashes = False
 
 # Instantiate the Babel object
@@ -22,6 +23,27 @@ babel = Babel(app)
 
 # Use Config as config for the Flask app
 app.config.from_object(Config)
+
+users = {
+    1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
+    2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
+    3: {"name": "Spock", "locale": "kg", "timezone": "Vulcan"},
+    4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
+}
+
+
+def get_user(user_id):
+    """Define get_user function to retrieve user information."""
+    return users.get(user_id)
+
+
+@app.before_request
+def before_request():
+    """Define a before_request function
+    to execute before all other functions.
+    """
+    user_id = request.args.get('login_as')
+    g.user = get_user(int(user_id)) if user_id else None
 
 
 @babel.localeselector
@@ -43,7 +65,7 @@ def get_locale():
 @app.route('/')
 def index():
     """Define index function."""
-    return render_template('4-index.html')
+    return render_template('3-index.html')
 
 
 if __name__ == '__main__':
