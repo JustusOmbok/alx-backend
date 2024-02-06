@@ -2,13 +2,11 @@
 """Module for flask app.
 """
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel
 
-# Instantiate the Flask app
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-# Instantiate the Babel object
 babel = Babel(app)
 
 
@@ -23,15 +21,15 @@ class Config:
 # Use Config as config for the Flask app
 app.config.from_object(Config)
 
-# Define the get_locale function with babel.localeselector decorator
+
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """Determine the best match for supported languages."""
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
-def index():
+def index() -> str:
     """Define index function."""
     return render_template('2-index.html')
 
