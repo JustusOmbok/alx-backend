@@ -2,7 +2,7 @@
 """Module for flask app.
 """
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel
 
 # Instantiate the Flask app
 app = Flask(__name__)
@@ -23,7 +23,7 @@ class Config:
 # Use Config as config for the Flask app
 app.config.from_object(Config)
 
-# Define the get_locale function with babel.localeselector decorator
+
 @babel.localeselector
 def get_locale():
     """Determine the best match for supported languages."""
