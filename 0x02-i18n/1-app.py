@@ -4,7 +4,7 @@
 from flask import Flask, render_template
 from flask_babel import Babel
 
-# Instantiate the Flask app
+
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
@@ -12,8 +12,9 @@ app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
-# Config class for configuring available languages
 class Config:
+    """Config class for configuring available languages.
+    """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
