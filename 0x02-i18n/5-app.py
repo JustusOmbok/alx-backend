@@ -15,7 +15,6 @@ class Config:
 
 # Instantiate the Flask app
 app = Flask(__name__)
-app.config.from_object('config')
 app.url_map.strict_slashes = False
 
 # Instantiate the Babel object
@@ -65,7 +64,7 @@ def get_locale():
 @app.route('/')
 def index():
     """Define index function."""
-    return render_template('3-index.html')
+    return render_template('5-index.html')
 
 
 if __name__ == '__main__':
