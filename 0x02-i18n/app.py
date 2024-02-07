@@ -109,7 +109,13 @@ def get_timezone():
 @app.route('/')
 def index():
     """Define index function."""
-    return render_template('5-index.html')
+    # Get the current time in the inferred time zone
+    current_time = datetime.datetime.now(pytz.timezone(get_timezone()))
+
+    # Format the current time according to the default format
+    formatted_time = current_time.strftime('%b %d, %Y, %I:%M:%S %p')
+
+    return render_template('5-index.html', current_time=formatted_time)
 
 
 if __name__ == '__main__':
