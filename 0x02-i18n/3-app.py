@@ -2,7 +2,7 @@
 """Module for flask app.
 """
 from flask import Flask, render_template, request
-from flask_babel import Babel
+from flask_babel import Babel, _
 
 # Instantiate the Flask app
 app = Flask(__name__)
